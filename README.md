@@ -10,7 +10,7 @@ It's not too difficult to get set up. Being that I'm not particularly great at w
 - Hold down BOOTSEL on your Pico (the big white button) and plug it in to your computer
 - Move the downloaded MicroPython file into the Pico when it's mounted as a flash device
 ### Setting up Spryg
-- Go to the latest release on GitHub and download `ST7735.py` (the library for the screen by GuyCarver), and `main.py` (the actual library itself)
+- Go to the latest release on GitHub and download the source code `ST7735.py` (the library for the screen by GuyCarver), and `main.py` (the actual library itself). Extract that zip while you're at it.
 - Open your Pico in a program where you can access the MicroPython filesystem. I recommend [Thonny](https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/2) as it gets the job done.
 - Move `main.py` and `ST7735.py` to the Pico
 
