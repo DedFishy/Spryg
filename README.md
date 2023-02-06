@@ -17,6 +17,10 @@ It's not too difficult to get set up. Being that I'm not particularly great at w
 You now have Spryg installed on your Pico. When you turn on your Sprig, it will tell you there is no game loaded. You must install one. The way to do this is to put a file called `game.py` on your Pico. The library will call the function `run` in your game, and it must accept one argument which is the Spryg library class.
 You can copy a game from the examples folder if you wish, and move it over to the Pico. Make sure its name is `game.py`, otherwise Spryg won't find it.
 
+## Docs
+
+The documentation is in the Wiki tab on Github.
+
 ## Troubleshooting
 
 #### The speaker starts screaming
