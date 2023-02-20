@@ -6,6 +6,17 @@ import time
 from ST7735 import TFT
 from framebuf import FrameBuffer, RGB565
 
+try:
+    import sd as sdcard
+    try_sd = True
+except ImportError as e:
+    print("[?] SD card module not found. SD Card will not be initialized.")
+    try_sd = False
+
+def bytes_to_gb(b):
+    return b/1e+9
+
+
 class Spryg:
     BUTTONS = {
         "W": Pin(5, Pin.IN, Pin.PULL_UP),
@@ -21,6 +32,7 @@ class Spryg:
     
     LED_L = Pin(28, Pin.OUT)
     LED_R = Pin(4, Pin.OUT)
+    
     
     SCK_PIN = 10 #BCLK
     WS_PIN = 11 #LCK
@@ -68,6 +80,21 @@ class Spryg:
             rate=self.SAMPLE_RATE_IN_HZ,
             ibuf=self.BUFFER_LENGTH_IN_BYTES,
         )
+        
+        if try_sd:
+            try:
+                # Set up SD Card
+                self.sd_spi = SPI(0,baudrate=40000000,sck=Pin(18),mosi=Pin(19),miso=Pin(16))
+                # Initialize SD card
+                self.sd = sdcard.SDCard(self.sd_spi, Pin(21))
+                os.mount(self.sd, "/sd")
+
+                print("Files: " + str(os.listdir("/sd")))
+                
+                self.loaded_sd = True
+            except Exception as e:
+                print("[!] " + str(e))
+                self.loaded_sd = False
     
     ## Buttons
     def get_button(self, bid):
@@ -126,7 +153,7 @@ class Spryg:
         self.screen.fill(0)
         for i in range(0, len(text)):
             self.screen.text(text[i], 0, i*10, color)
-            self.flip()
+        self.flip()
     
     # Update display with one call (as opposed to still one but it's more verbose)
     def flip(self):
