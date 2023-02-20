@@ -12,7 +12,7 @@ It's not too difficult to get set up. Being that I'm not particularly great at w
 ### Setting up Spryg
 - Go to the latest release on GitHub and download the source code `ST7735.py` (the library for the screen by GuyCarver), and `main.py` (the actual library itself). Extract that zip while you're at it.
 - Open your Pico in a program where you can access the MicroPython filesystem. I recommend [Thonny](https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/2) as it gets the job done.
-- Move `main.py` and `ST7735.py` to the Pico
+- Move `main.py`, `ST7735.py`, and optionally `sd.py` to the Pico
 
 You now have Spryg installed on your Pico. When you turn on your Sprig, it will tell you there is no game loaded. You must install one. The way to do this is to put a file called `game.py` on your Pico. The library will call the function `run` in your game, and it must accept one argument which is the Spryg library class.
 You can copy a game from the examples folder if you wish, and move it over to the Pico. Make sure its name is `game.py`, otherwise Spryg won't find it.
